@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pre-commit = "*"
+pylint = "*"
+pydocstyle = "*"
+mypy = "*"
+pytest = "*"
+fastapi = "*"
+requests = "*"
+fastapi-pagination = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+asyncio = "==3.4.3"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
