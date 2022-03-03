@@ -37,10 +37,7 @@ class TestEntrypointServices:
 
     def test_get_one_candidature(self):
         """Test get one candidature."""
-        token = (
-            "00D4L000000gmbH!AQsAQNtrsIaF8paoPGYUzjCUJovreEXTHbtQz2IM"
-            "ZzHi5qJXiMT1kcGh9U.55vxiRRucCu8FsYf7RuKbwO7kNw6jrr.kWe1N"
-        )
+        token = "00D4L000000gmbH!AQsAQPPIIjH_fUVMez58h1hD9L_lvCXy5zvA2Iw.8e70TYS0ioVZl01rzvCPbCDU_ewh24x84SvZ9SaasRzY9nl2u_B5L9fV"
         base_url = "https://soljit35-dev-ed.my.salesforce.com/"
 
         response = client.get(
@@ -55,10 +52,7 @@ class TestEntrypointServices:
 
     def test_get_all_candidature(self):
         """Test get all candidatures."""
-        token = (
-            "00D4L000000gmbH!AQsAQNtrsIaF8paoPGYUzjCUJovreEXTHbtQz2IMZ"
-            "zHi5qJXiMT1kcGh9U.55vxiRRucCu8FsYf7RuKbwO7kNw6jrr.kWe1N"
-        )
+        token = "00D4L000000gmbH!AQsAQPPIIjH_fUVMez58h1hD9L_lvCXy5zvA2Iw.8e70TYS0ioVZl01rzvCPbCDU_ewh24x84SvZ9SaasRzY9nl2u_B5L9fV"
         base_url = "https://soljit35-dev-ed.my.salesforce.com/"
 
         response = client.post(
@@ -70,10 +64,7 @@ class TestEntrypointServices:
 
     def test_insert_candidature(self):
         """Test insert candidature."""
-        token = (
-            "00D4L000000gmbH!AQsAQNtrsIaF8paoPGYUzjCUJovreEXTHbtQz2IM"
-            "ZzHi5qJXiMT1kcGh9U.55vxiRRucCu8FsYf7RuKbwO7kNw6jrr.kWe1N"
-        )
+        token = "00D4L000000gmbH!AQsAQPPIIjH_fUVMez58h1hD9L_lvCXy5zvA2Iw.8e70TYS0ioVZl01rzvCPbCDU_ewh24x84SvZ9SaasRzY9nl2u_B5L9fV"
         base_url = "https://soljit35-dev-ed.my.salesforce.com/"
         field = "Candidature__c"
         body = {
@@ -92,10 +83,7 @@ class TestEntrypointServices:
 
     def test_update_candidature(self):
         """Test update candidature."""
-        token = (
-            "00D4L000000gmbH!AQsAQNtrsIaF8paoPGYUzjCUJovreEXTHbtQz2I"
-            "MZzHi5qJXiMT1kcGh9U.55vxiRRucCu8FsYf7RuKbwO7kNw6jrr.kWe1N"
-        )
+        token = "00D4L000000gmbH!AQsAQPPIIjH_fUVMez58h1hD9L_lvCXy5zvA2Iw.8e70TYS0ioVZl01rzvCPbCDU_ewh24x84SvZ9SaasRzY9nl2u_B5L9fV"
         base_url = "https://soljit35-dev-ed.my.salesforce.com/"
         field = "Candidature__c"
         id = "a004L000002gCJK"
@@ -113,14 +101,17 @@ class TestEntrypointServices:
 
     def test_search_condidature_function(self):
         """Test search condidature function from utils."""
-
+        token = "00D4L000000gmbH!AQsAQPPIIjH_fUVMez58h1hD9L_lvCXy5zvA2Iw.8e70TYS0ioVZl01rzvCPbCDU_ewh24x84SvZ9SaasRzY9nl2u_B5L9fV"
         name = "Charaf"
-        resp = search_condidature(name)
+        resp = search_condidature(name, token)
         assert resp["done"] is True
 
     def test_search_condidature(self):
         """Test search condidature."""
-
-        response = client.get("/search_candidatures?search=Charaf")
+        token = "00D4L000000gmbH!AQsAQPPIIjH_fUVMez58h1hD9L_lvCXy5zvA2Iw.8e70TYS0ioVZl01rzvCPbCDU_ewh24x84SvZ9SaasRzY9nl2u_B5L9fV"
+        response = client.post(
+            "/search_candidatures",
+            data=json.dumps({"search": "Charaf", "token": token}),
+        )
         assert response.status_code == 200
         assert len(response.json()["records"]) > 1
